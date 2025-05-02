@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Call</title>
+</head>
+<body>
+  <h2>Healthcare Video Call</h2>
+  <input type="text" id="roomInput" placeholder="Room ID">
+  <button onclick="joinRoom()">Join</button>
+  <br><br>
+  <video id="localVideo" autoplay muted></video>
+  <video id="remoteVideo" autoplay></video>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
