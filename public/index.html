@@ -1,15 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Video Call</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Call App</title>
+  <style>
+    /* Simple styles for the video call */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    #joinRoom {
+      text-align: center;
+      margin: 50px;
+    }
+
+    #roomInput {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #videoCall {
+      display: none;
+      text-align: center;
+    }
+
+    #localVideo, #remoteVideo {
+      width: 45%;
+      height: 300px;
+      border: 2px solid #000;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    /* Labels for Doctor and Patient */
+    .video-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .video-container video {
+      border-radius: 10px;
+    }
+
+    .video-label {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    /* Chat area */
+    #chat {
+      margin-top: 20px;
+      width: 90%;
+    }
+
+    #messages {
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    #sendBtn {
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #sendBtn:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-  <h2>Healthcare Video Call</h2>
-  <input type="text" id="roomInput" placeholder="Room ID">
-  <button onclick="joinRoom()">Join</button>
-  <br><br>
-  <video id="localVideo" autoplay muted></video>
-  <video id="remoteVideo" autoplay></video>
+  <!-- Join Room Section -->
+  <div id="joinRoom">
+    <input type="text" id="roomInput" placeholder="Enter Room ID" />
+    <button onclick="joinRoom()">Join</button>
+  </div>
+
+  <!-- Video Call Section -->
+  <div id="videoCall" style="display:none;">
+    <div class="video-container">
+      <!-- Doctor's video feed -->
+      <div>
+        <div class="video-label">Doctor</div>
+        <video id="localVideo" autoplay playsinline muted></video>
+      </div>
+      
+      <!-- Patient's video feed -->
+      <div>
+        <div class="video-label">Patient</div>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </div>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chat">
+      <div id="messages"></div>
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
 </body>
